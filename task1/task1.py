@@ -21,4 +21,4 @@ while True:
     if massive_value == 1:
         break
 
-print("".join(map(str, path)))
+print(f"полученный путь:{"".join(map(str, path))}")
