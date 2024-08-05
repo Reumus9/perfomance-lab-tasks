@@ -1,4 +1,5 @@
 import statistics as st
+import argparse
 
 def read_array_from_file(file_path):
     # функция импортирует элементы из файла в лист
@@ -56,7 +57,7 @@ def gradient_descent(massive, filtr_mean):
     return min_move
         
     
-def minimal_move(path = input("введите путь к файлу:")):
+def minimal_move(path):
     massive = read_array_from_file(path)
     mean = round(st.mean(massive))
     delta_x = delta(massive, mean)
@@ -64,8 +65,16 @@ def minimal_move(path = input("введите путь к файлу:")):
     print(gradient_descent(massive, filtr_mean))
 
     
-minimal_move()    
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("path", type=str)
+    arg = parser.parse_args()
+
+    minimal_move(arg.path)
     
+if __name__ == "__main__":
+    main()
     
     
     

@@ -1,7 +1,6 @@
+import argparse
 
-
-def import_datat2(path1 = input("введите путь к файлу с данными окружности:"),
-                  path2 = input("введите путь к файлу с данными координат точек:")):
+def import_datat2(path1, path2 ):
     # функция для импорта данных из файлов
     with open(path1,"r") as f1, open(path2,"r") as f2:
         fr1 = f1.read()
@@ -32,4 +31,16 @@ def points_in_out_circle(circle_value, points_coordinat):
             print(cout, "точка снаружи", sep="-", end="\n")
         cout += 1
             
-points_in_out_circle(*import_datat2())
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("path1", type=str)
+    parser.add_argument("path2", type=str)
+    args = parser.parse_args()
+    
+    points_in_out_circle(*import_datat2(args.path1, args.path2))
+    
+    
+if __name__ == "__main__":
+    main()

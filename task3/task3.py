@@ -1,6 +1,8 @@
 import json
+import argparse
 
 def recursive_search_id(dictionary, id, value):
+    # реализация рекурсивного поиска id
     if isinstance(dictionary, list):
         for item in dictionary:
             recursive_search_id(item, id, value)
@@ -11,9 +13,7 @@ def recursive_search_id(dictionary, id, value):
             for key in dictionary:
                 recursive_search_id(dictionary[key], id, value)
 
-def create_report(test_path = input("введите путь к файлу с данными теста:"),
-                  values_path = input("введите путь к файлу с данными значений:"),
-                  report_path = input("введите путь для сохранения отчета:")):
+def create_report(test_path, values_path, report_path):
     
     with open(test_path, "r") as test, open(values_path, "r") as values, open(report_path, "w") as report:
         test_data = json.load(test)
@@ -23,8 +23,18 @@ def create_report(test_path = input("введите путь к файлу с 
 
         json.dump(test_data, report, indent=4)
         
-create_report()
-            
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("test_path", type=str)
+    parser.add_argument("values_path", type=str)
+    parser.add_argument("report_path", type=str)
+    args = parser.parse_args()
+    
+    create_report(args.test_path, args.values_path, args.report_path)  
+    
+    
+if __name__ == "__main__":
+    main()          
     
         
         
