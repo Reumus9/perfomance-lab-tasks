@@ -19,8 +19,8 @@ def circle_path(massive, interval):
             
         if massive_value == 1:
             break
-
-    print(f"полученный путь:{"".join(map(str, path))}")
+    path = "".join(map(str, path))
+    print(f"полученный путь:{path}")
 
 def main():
     parser = argparse.ArgumentParser()
